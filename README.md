@@ -66,7 +66,7 @@ RLS is enabled on both public tables. Only members may access prospects. Members
 
 ## Hosting
 
-Deploy this repository to any supported Next.js host (for example Vercel or a Node.js server). Set the two variables from `.env.example`. Run `npm run build` then `npm start` for Node hosting. Configure the deployed origin as the Supabase Auth Site URL and allow `<origin>/auth/callback` as a redirect URL so email changes can return to the app. No hosting deployment is included. The source is committed locally, but the GitHub push was blocked: the connected integration returned HTTP 403 (Resource not accessible by integration). Grant the integration repository write access, or push from your own authenticated Git checkout.
+Deploy this repository to any supported Next.js host (for example Vercel or a Node.js server). Set the two variables from `.env.example`. Run `npm run build` then `npm start` for Node hosting. Configure the deployed origin as the Supabase Auth Site URL and allow `<origin>/auth/callback` as a redirect URL so email changes can return to the app. Source is published to https://github.com/SsadiqRoy/prospect-hosts. No hosting deployment is included.
 
 ## Validation and limitations
 
