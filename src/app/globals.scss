@@ -27,6 +27,11 @@ input,
 select,
 textarea {
   -webkit-tap-highlight-color: transparent;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 button,
 a {
@@ -721,6 +726,7 @@ dialog {
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 20px;
+
   input,
   select,
   textarea {

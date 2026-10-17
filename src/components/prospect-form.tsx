@@ -1,38 +1,12 @@
 "use client";
 import { useState } from "react";
-import {
-  FiUsers,
-  FiCalendar,
-  FiPlus,
-  FiCheck,
-  FiX,
-  FiTrash2,
-  FiInfo,
-} from "react-icons/fi";
+import { FiUsers, FiCalendar, FiPlus, FiCheck, FiX, FiTrash2, FiInfo } from "react-icons/fi";
 import { Modal, Field } from "./ui";
-import {
-  statuses,
-  types,
-  certifications,
-  areas,
-  platforms,
-  emptyProspect,
-  type Prospect,
-  type ProspectInput,
-} from "@/lib/prospects";
+import { statuses, types, certifications, areas, platforms, emptyProspect, type Prospect, type ProspectInput } from "@/lib/prospects";
 import { saveProspect } from "@/app/actions";
-export default function ProspectForm({
-  prospect,
-  onClose,
-  onSaved,
-}: {
-  prospect?: Prospect;
-  onClose: () => void;
-  onSaved: () => void;
-}) {
-  const [p, setP] = useState<ProspectInput>(
-    prospect ?? { ...emptyProspect, name: "" },
-  );
+
+export default function ProspectForm({ prospect, onClose, onSaved }: { prospect?: Prospect; onClose: () => void; onSaved: () => void }) {
+  const [p, setP] = useState<ProspectInput>(prospect ?? { ...emptyProspect, name: "" });
   const [tab, setTab] = useState("details");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -40,14 +14,7 @@ export default function ProspectForm({
     setP((prev) => ({ ...prev, [key]: value }));
   }
   const input = (
-    key:
-      | "name"
-      | "location"
-      | "area_group"
-      | "whatsapp"
-      | "website"
-      | "last_contacted"
-      | "next_follow_up",
+    key: "name" | "location" | "area_group" | "whatsapp" | "website" | "last_contacted" | "next_follow_up",
     label: string,
     type = "text",
   ) => (
@@ -58,17 +25,15 @@ export default function ProspectForm({
         type={type}
         required={key === "name"}
         maxLength={key === "name" ? 200 : 2000}
+        disabled={busy}
       />
     </Field>
   );
+
   return (
     <Modal
       title={prospect ? "Update prospect" : "Add prospect"}
-      subtitle={
-        prospect
-          ? prospect.name
-          : "Start with a name. Add the contact details you have."
-      }
+      subtitle={prospect ? prospect.name : "Start with a name. Add the contact details you have."}
       onClose={onClose}
       wide
     >
@@ -98,19 +63,11 @@ export default function ProspectForm({
         }}
       >
         <div className="form-tabs">
-          <button
-            type="button"
-            className={tab === "details" ? "selected" : ""}
-            onClick={() => setTab("details")}
-          >
+          <button type="button" className={tab === "details" ? "selected" : ""} onClick={() => setTab("details")}>
             <FiUsers />
             Details & contacts
           </button>
-          <button
-            type="button"
-            className={tab === "outreach" ? "selected" : ""}
-            onClick={() => setTab("outreach")}
-          >
+          <button type="button" className={tab === "outreach" ? "selected" : ""} onClick={() => setTab("outreach")}>
             <FiCalendar />
             Outreach & evidence
           </button>
@@ -119,12 +76,7 @@ export default function ProspectForm({
           <div className="form-grid">
             {input("name", "Name *")}
             <Field label="Type">
-              <select
-                value={p.type}
-                onChange={(e) =>
-                  set("type", e.target.value as ProspectInput["type"])
-                }
-              >
+              <select value={p.type} onChange={(e) => set("type", e.target.value as ProspectInput["type"])}>
                 {types.map((v) => (
                   <option key={v}>{v}</option>
                 ))}
@@ -132,10 +84,7 @@ export default function ProspectForm({
             </Field>
             {input("location", "Location")}
             <Field label="Area group">
-              <select
-                value={p.area_group}
-                onChange={(e) => set("area_group", e.target.value)}
-              >
+              <select value={p.area_group} onChange={(e) => set("area_group", e.target.value)}>
                 <option value="">Select area group</option>
                 {areas.map((v) => (
                   <option key={v}>{v}</option>
@@ -143,26 +92,16 @@ export default function ProspectForm({
               </select>
             </Field>
             <Field label="Email addresses (one per line)">
-              <textarea
-                value={p.emails.join("\n")}
-                onChange={(e) => set("emails", e.target.value.split("\n"))}
-                rows={2}
-              />
+              <textarea value={p.emails.join("\n")} onChange={(e) => set("emails", e.target.value.split("\n"))} rows={2} />
             </Field>
             <Field label="Phone numbers (one per line)">
-              <textarea
-                value={p.phones.join("\n")}
-                onChange={(e) => set("phones", e.target.value.split("\n"))}
-                rows={2}
-              />
+              <textarea value={p.phones.join("\n")} onChange={(e) => set("phones", e.target.value.split("\n"))} rows={2} />
             </Field>
             {input("whatsapp", "WhatsApp number")}
             {input("website", "Website")}
           </div>
           <h3>Social accounts</h3>
-          <p className="muted small">
-            Add a profile URL or username for each platform.
-          </p>
+          <p className="muted small">Add a profile URL or username for each platform.</p>
           {p.socials.map((s, i) => (
             <div className="social-row" key={i}>
               <select
@@ -192,9 +131,7 @@ export default function ProspectForm({
                 onChange={(e) =>
                   set(
                     "socials",
-                    p.socials.map((v, j) =>
-                      j === i ? { ...v, value: e.target.value } : v,
-                    ),
+                    p.socials.map((v, j) => (j === i ? { ...v, value: e.target.value } : v)),
                   )
                 }
               />
@@ -213,41 +150,20 @@ export default function ProspectForm({
               </button>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={() =>
-              set("socials", [
-                ...p.socials,
-                { platform: "Instagram", value: "" },
-              ])
-            }
-          >
+          <button type="button" onClick={() => set("socials", [...p.socials, { platform: "Instagram", value: "" }])}>
             <FiPlus />
             Add social account
           </button>
           <div className="form-grid spaced">
             <Field label="Certification">
-              <select
-                value={p.certification}
-                onChange={(e) =>
-                  set(
-                    "certification",
-                    e.target.value as ProspectInput["certification"],
-                  )
-                }
-              >
+              <select value={p.certification} onChange={(e) => set("certification", e.target.value as ProspectInput["certification"])}>
                 {certifications.map((v) => (
                   <option key={v}>{v}</option>
                 ))}
               </select>
             </Field>
             <Field label="Status">
-              <select
-                value={p.status}
-                onChange={(e) =>
-                  set("status", e.target.value as ProspectInput["status"])
-                }
-              >
+              <select value={p.status} onChange={(e) => set("status", e.target.value as ProspectInput["status"])}>
                 {statuses.map((v) => (
                   <option key={v}>{v}</option>
                 ))}
@@ -261,24 +177,14 @@ export default function ProspectForm({
             {input("next_follow_up", "Next follow-up", "date")}
           </div>
           <Field label="Evidence / follow-up notes">
-            <textarea
-              rows={5}
-              value={p.notes}
-              onChange={(e) => set("notes", e.target.value)}
-              maxLength={10000}
-            />
+            <textarea rows={5} value={p.notes} onChange={(e) => set("notes", e.target.value)} maxLength={10000} disabled={busy} />
           </Field>
           <Field label="Source URLs (one per line)">
-            <textarea
-              rows={3}
-              value={p.sources.join("\n")}
-              onChange={(e) => set("sources", e.target.value.split("\n"))}
-            />
+            <textarea rows={3} value={p.sources.join("\n")} onChange={(e) => set("sources", e.target.value.split("\n"))} disabled={busy} />
           </Field>
           <p className="notice">
             <FiInfo />
-            “Not verified” means certification is unconfirmed. It does not mean
-            the business is operating illegally.
+            “Not verified” means certification is unconfirmed. It does not mean the business is operating illegally.
           </p>
         </div>
         {error && (
