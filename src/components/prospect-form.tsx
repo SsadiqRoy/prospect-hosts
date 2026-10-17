@@ -76,7 +76,7 @@ export default function ProspectForm({ prospect, onClose, onSaved }: { prospect?
           <div className="form-grid">
             {input("name", "Name *")}
             <Field label="Type">
-              <select value={p.type} onChange={(e) => set("type", e.target.value as ProspectInput["type"])}>
+              <select value={p.type} onChange={(e) => set("type", e.target.value as ProspectInput["type"])} disabled={busy}>
                 {types.map((v) => (
                   <option key={v}>{v}</option>
                 ))}
@@ -84,7 +84,7 @@ export default function ProspectForm({ prospect, onClose, onSaved }: { prospect?
             </Field>
             {input("location", "Location")}
             <Field label="Area group">
-              <select value={p.area_group} onChange={(e) => set("area_group", e.target.value)}>
+              <select value={p.area_group} onChange={(e) => set("area_group", e.target.value)} disabled={busy}>
                 <option value="">Select area group</option>
                 {areas.map((v) => (
                   <option key={v}>{v}</option>
@@ -92,10 +92,10 @@ export default function ProspectForm({ prospect, onClose, onSaved }: { prospect?
               </select>
             </Field>
             <Field label="Email addresses (one per line)">
-              <textarea value={p.emails.join("\n")} onChange={(e) => set("emails", e.target.value.split("\n"))} rows={2} />
+              <textarea value={p.emails.join("\n")} onChange={(e) => set("emails", e.target.value.split("\n"))} rows={2} disabled={busy} />
             </Field>
             <Field label="Phone numbers (one per line)">
-              <textarea value={p.phones.join("\n")} onChange={(e) => set("phones", e.target.value.split("\n"))} rows={2} />
+              <textarea value={p.phones.join("\n")} onChange={(e) => set("phones", e.target.value.split("\n"))} rows={2} disabled={busy} />
             </Field>
             {input("whatsapp", "WhatsApp number")}
             {input("website", "Website")}
