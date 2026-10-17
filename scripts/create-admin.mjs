@@ -17,7 +17,7 @@ const { data, error } = await db.auth.admin.createUser({
   email_confirm: true,
   user_metadata: { name },
 });
-console.log("about to time");
+
 if (error) throw error;
 const { error: memberError } = await db.from("workspace_members").insert({ user_id: data.user.id, name, role: "admin" });
 if (memberError) {
