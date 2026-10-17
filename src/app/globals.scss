@@ -209,10 +209,11 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #122131;
+  // background: #122131;
   border-radius: 6px;
   padding: 3px 8px;
   flex-shrink: 0;
+
   img {
     object-fit: contain;
     display: block;

@@ -12,7 +12,7 @@ export default function Login() {
     <main className="login-shell">
       <section className="login-card">
         <div className="logo-wrap">
-          <img src="/logo.png" alt="SupaSpace" width="144" height="42" />
+          <img src="/theme=light.png" alt="SupaSpace" width="144" height="42" />
         </div>
         <span className="eyebrow">HOST WORKSPACE</span>
         <h1>Welcome back</h1>
@@ -24,10 +24,7 @@ export default function Login() {
             setError("");
             const f = new FormData(e.currentTarget);
             try {
-              const r = await login(
-                String(f.get("email")),
-                String(f.get("password")),
-              );
+              const r = await login(String(f.get("email")), String(f.get("password")));
               if (r.error) setError(r.error);
               else {
                 router.replace("/");
@@ -44,31 +41,15 @@ export default function Login() {
             Email address
             <div className="input-icon">
               <FiMail />
-              <input
-                name="email"
-                type="email"
-                autoComplete="username"
-                required
-                placeholder="you@example.com"
-              />
+              <input name="email" type="email" autoComplete="username" required placeholder="you@example.com" />
             </div>
           </label>
           <label>
             Password
             <div className="input-icon">
               <FiLock />
-              <input
-                name="password"
-                type={show ? "text" : "password"}
-                autoComplete="current-password"
-                required
-              />
-              <button
-                type="button"
-                className="icon-button"
-                aria-label={show ? "Hide password" : "Show password"}
-                onClick={() => setShow(!show)}
-              >
+              <input name="password" type={show ? "text" : "password"} autoComplete="current-password" required />
+              <button type="button" className="icon-button" aria-label={show ? "Hide password" : "Show password"} onClick={() => setShow(!show)}>
                 {show ? <FiEyeOff /> : <FiEye />}
               </button>
             </div>
@@ -83,9 +64,7 @@ export default function Login() {
             <FiArrowRight />
           </button>
         </form>
-        <p className="muted small">
-          Private access. Ask your administrator to add an account.
-        </p>
+        <p className="muted small">Private access. Ask your administrator to add an account.</p>
       </section>
     </main>
   );
