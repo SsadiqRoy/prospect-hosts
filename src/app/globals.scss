@@ -36,10 +36,12 @@ textarea {
     background-color: $muted;
   }
 }
+
 button,
 a {
   touch-action: manipulation;
 }
+
 button {
   cursor: pointer;
   display: inline-flex;
@@ -83,12 +85,14 @@ button {
     border-color: #b33b4b;
   }
 }
+
 svg {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
   vertical-align: middle;
 }
+
 a {
   color: $purple;
   text-decoration: none;
@@ -96,6 +100,7 @@ a {
     text-decoration: underline;
   }
 }
+
 input,
 select,
 textarea {
@@ -108,18 +113,22 @@ textarea {
   width: 100%;
   min-height: 44px;
 }
+
 textarea {
   resize: vertical;
 }
+
 input::placeholder,
 textarea::placeholder {
   color: $muted;
 }
+
 input[type="checkbox"] {
   width: 16px;
   min-height: 16px;
   accent-color: $purple;
 }
+
 input:focus,
 select:focus,
 textarea:focus {
