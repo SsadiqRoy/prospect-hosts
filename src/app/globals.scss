@@ -1,9 +1,11 @@
-$purple: #5b32d6;
+// $purple: #5b32d6;
+$purple: #5439ff;
 $ink: #17202f;
 $muted: #697386;
 $line: #e6e8ef;
 $bg: #f7f8fc;
 $soft: #f1ecff;
+
 * {
   box-sizing: border-box;
 }
@@ -31,6 +33,7 @@ textarea {
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    background-color: $muted;
   }
 }
 button,
