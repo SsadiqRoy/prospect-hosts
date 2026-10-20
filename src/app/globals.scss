@@ -33,7 +33,7 @@ textarea {
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background-color: $muted;
+    background-color: rgba(84, 57, 255, 0.1);
   }
 }
 
@@ -71,7 +71,7 @@ button {
     border-color: $purple;
     color: white;
     &:hover {
-      background: #4b33e7;
+      background: #4932e0;
       // background: #4c27bd;
     }
   }
